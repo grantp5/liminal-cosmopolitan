@@ -34,19 +34,16 @@ fa = ["Auditory Fine Arts", "Visual Fine Arts", "Other Fine Arts", "Other"]
 rmpss = ["Religion", "Mythology", "Philosophy", "Social Science"]
 
 adjacent_categories = True
-same_quarter_repeats = True
 
-while adjacent_categories or same_quarter_repeats:
+while adjacent_categories:
     print('shuffling...')
     tossups, bonuses = shuffle(lit, hist, sci, fa, rmpss)
     final_order_tu, final_order_b = generateOrder(tossups, bonuses)
 
     print('checking...')
     adjacent_categories = check_adjacent_categories(final_order_tu, final_order_b, categories)
-    same_quarter_repeats = check_same_quarter_repeats(final_order_tu, final_order_b)
 
     #adjacent_categories = False
-    #same_quarter_repeats = False
 
 docName = 'Packet 3.docx'
 create_docx(final_order_tu, final_order_b, docName)

@@ -53,26 +53,3 @@ def check_adjacent_categories(final_order_tu, final_order_b, categories):
         if categories[final_order_tu[i]] == categories[final_order_b[i]]:
             return True
     return False
-
-def check_same_quarter_repeats(final_order_tu, final_order_b):
-    for i in range(len(final_order_tu)-15):
-        tu = final_order_tu[i]
-        b_position = final_order_b.index(tu)
-        if b_position <= 4:
-            return True
-    for i in range(len(final_order_tu)-15):
-        tu = final_order_tu[i+5]
-        b_position = final_order_b.index(tu)
-        if b_position >= 5 and b_position <=9:
-            return True
-    for i in range(len(final_order_tu)-15):
-        tu = final_order_tu[i+10]
-        b_position = final_order_b.index(tu)
-        if b_position >= 10 and b_position <= 14:
-            return True
-    for i in range(len(final_order_tu)-15):
-        tu = final_order_tu[i+15]
-        b_position = final_order_b.index(tu)
-        if b_position >= 15:
-            return True
-    return False
