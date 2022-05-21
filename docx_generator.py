@@ -1,7 +1,7 @@
 import docx
 from docx.shared import Pt
 
-def create_docx(final_order_tu, final_order_b):
+def create_docx(final_order_tu, final_order_b, name):
     doc = docx.Document()
     style = doc.styles['Normal']
     font = style.font
@@ -41,6 +41,6 @@ def create_docx(final_order_tu, final_order_b):
         d.add_run('>')
         doc.add_paragraph()
 
-    doc.save('Packet 3.docx')
+    doc.save(name)
 
     print('Packet Generated!')
