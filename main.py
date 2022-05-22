@@ -4,7 +4,7 @@ from randomizer import *
 # TODO
 # Expand to create multiple packets
 # Make work TU/B/TU/B format
-# Split RM and PSS evenly between halves
+# Split RM and PSS evenly between halves (create a better method for it)
 
 categories = {"American Literature": "Literature",
               "European Literature": "Literature",
@@ -34,16 +34,19 @@ fa = ["Auditory Fine Arts", "Visual Fine Arts", "Other Fine Arts", "Other"]
 rmpss = ["Religion", "Mythology", "Philosophy", "Social Science"]
 
 adjacent_categories = True
+spaced_rmpss = True
 
-while adjacent_categories:
+while adjacent_categories or spaced_rmpss:
     print('shuffling...')
     tossups, bonuses = shuffle(lit, hist, sci, fa, rmpss)
     final_order_tu, final_order_b = generateOrder(tossups, bonuses)
 
     print('checking...')
     adjacent_categories = check_adjacent_categories(final_order_tu, final_order_b, categories)
+    spaced_rmpss = check_spaced_rmpss(final_order_tu, final_order_b, categories)
 
     #adjacent_categories = False
+    #spaced_rmpss = False
 
 docName = 'Packet 3.docx'
 create_docx(final_order_tu, final_order_b, docName)

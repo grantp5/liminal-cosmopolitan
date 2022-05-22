@@ -42,5 +42,4 @@ def create_docx(final_order_tu, final_order_b, name):
         doc.add_paragraph()
 
     doc.save(name)
-
     print('Packet Generated!')
