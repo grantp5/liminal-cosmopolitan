@@ -52,4 +52,18 @@ def check_adjacent_categories(final_order_tu, final_order_b, categories):
             return True
         if categories[final_order_tu[i]] == categories[final_order_b[i]]:
             return True
+        if categories[final_order_tu[i+1]] == categories[final_order_b[i+1]]:
+            return True
     return False
+
+def check_spaced_rmpss(final_order_tu, final_order_b, categories):
+    condition = 0
+    for i in range(len(final_order_tu)-10):
+        if categories[final_order_tu[i]] == "Beliefs":
+            condition +=1
+        if categories[final_order_b[i]] == "Beliefs":
+            condition +=1
+    if condition == 2:
+        return False
+    else:
+        return True
