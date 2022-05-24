@@ -2,8 +2,8 @@ from docx_generator import *
 from randomizer import *
 
 # TODO
-# Expand to create multiple packets
-# Make work TU/B/TU/B format
+# Create interface for selecting number of packets, distribution, etc
+# Make work TU/B/TU/B format (integrate into interface)
 # Split RM and PSS evenly between halves (create a better method for it)
 
 categories = {"American Literature": "Literature",
@@ -36,17 +36,22 @@ rmpss = ["Religion", "Mythology", "Philosophy", "Social Science"]
 adjacent_categories = True
 spaced_rmpss = True
 
-while adjacent_categories or spaced_rmpss:
-    print('shuffling...')
+desired_packets = input("How many packets?: ")
+
+for x in range(int(desired_packets)):
+    while adjacent_categories or spaced_rmpss:
+        print('shuffling...')
+        tossups, bonuses = shuffle(lit, hist, sci, fa, rmpss)
+        final_order_tu, final_order_b = generateOrder(tossups, bonuses)
+
+        print('checking...')
+        adjacent_categories = check_adjacent_categories(final_order_tu, final_order_b, categories)
+        spaced_rmpss = check_spaced_rmpss(final_order_tu, final_order_b, categories)
+
+        #adjacent_categories = False
+        #spaced_rmpss = False
+
+    docName = 'Packet ' + str(x+1) + '.docx'
+    create_docx(final_order_tu, final_order_b, docName)
     tossups, bonuses = shuffle(lit, hist, sci, fa, rmpss)
     final_order_tu, final_order_b = generateOrder(tossups, bonuses)
-
-    print('checking...')
-    adjacent_categories = check_adjacent_categories(final_order_tu, final_order_b, categories)
-    spaced_rmpss = check_spaced_rmpss(final_order_tu, final_order_b, categories)
-
-    #adjacent_categories = False
-    #spaced_rmpss = False
-
-docName = 'Packet 3.docx'
-create_docx(final_order_tu, final_order_b, docName)
