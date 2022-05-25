@@ -46,7 +46,7 @@ def check_adjacent_categories(final_order_tu, final_order_b, categories):
     for i in range(len(final_order_tu) - 1):
         if categories[final_order_tu[i]] == categories[final_order_tu[i+1]]:
             return True
-        elif categories[final_order_b[i]] == categories[final_order_b[i+1]]:
+        if categories[final_order_b[i]] == categories[final_order_b[i+1]]:
             return True
         if categories[final_order_b[i]] == categories[final_order_tu[i+1]]:
             return True
